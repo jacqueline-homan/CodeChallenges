@@ -21,6 +21,41 @@ nums
     | x -> string x)
 |> Seq.iter (printfn "%s")
 
+let nums2 = [1..100]
+nums2
+|> Seq.map (fun x->
+    match x%3, x%5 with
+    | 0,0 -> "FizzBuzz"
+    | 0,_ -> "Fizz"
+    | _,0 -> "Buzz"
+    | _ -> string x)
+|> Seq.iter (printfn "%s")
+
+let fizzbuzz modFizz modBuzz = 
+    [1..100]
+    |> Seq.map (fun x->
+        match x%modFizz, x%modBuzz with
+        | 0,0 -> "FizzBuzz"
+        | 0,_ -> "Fizz"
+        | _,0 -> "Buzz"
+        | _ -> string x)
+fizzbuzz 3 5
+|> Seq.iter (printfn "%s")
+
+let fizzBuzz modFizz modBuzz = 
+    [1..100]
+    |> Seq.map (fun x->
+        match modFizz(x:int), modBuzz(x:int) with
+        | 0,0 -> "FizzBuzz"
+        | 0,_ -> "Fizz"
+        | _,0 -> "Buzz"
+        | _ -> string x)
+fizzBuzz (fun x -> x%3) (fun x -> x%5)
+|> Seq.iter (printfn "%s")
+
+ 
+
+
 [<EntryPoint>]
 let main argv =
     (printNumbers())
