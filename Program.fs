@@ -71,11 +71,24 @@ let zeta k e =
         | dx when dx <= e -> x
         | _ -> seqInfinite(i + 1) x
     seqInfinite 1 0.0
-printfn "%f" (zeta 15.0 0.0)
+
+
+//Demonstrating tail recursion w/ factorial computation
+let factorial n =
+    let rec loop i acc =
+        match i with
+        | 0 | 1 -> acc
+        | _ -> loop(i - 1) (acc * i)
+    loop n 1 //tail recursion
+
+// Demonstrating function composition
+let compose (f: 'b -> 'c) (g: 'a -> 'b) =
+    fun a -> a |> g |> f
 
 [<EntryPoint>]
 let main argv =
     (printNumbers())
-   
+    printfn "%f" (zeta 15.0 0.0)
+    printfn "%d" (factorial 5)
     0 // return an integer exit code
 
