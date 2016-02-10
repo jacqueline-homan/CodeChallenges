@@ -109,6 +109,7 @@ let factorial n =
         | _ -> loop(i - 1) (acc * i)
     loop n 1 //tail recursion
 
+//Imperative - usedmostly for flow control
 let rec fib x =
     if x < 2 then 1
     else fib (x - 1) + fib(x - 2)
@@ -119,7 +120,28 @@ let compose (f: 'b -> 'c) (g: 'a -> 'b) =
     fun a -> a |> g |> f
 
 
+(* Currying
+'a -> 'b -> 'c is a signature for a generic function
+The ' * ' means that the parameters form a tuple
+So 'a * 'b -> 'c would be the signature for fun (a, b) -> a * b 
+where you multiply a and b.
 
+'a -> 'b -> 'c would be the signature for fun a -> fun b -> a*b.
+In F#, you can also write this as fun a b -> a*b.
+
+The general idea is that fun (a,b) -> a*b takes the two parameters
+at the same time.
+
+fun a -> fun b -> a*b takes a then returns a new function 'b -> 'c with 
+a captured within a closure: fun b -> a*b where a is already known.
+
+let curry (f:'a * 'b -> 'c) : 'a -> 'b -> 'c =
+    fun (a:'a) -> fun (b:'b) -> 'c
+        fun(a, b) -> 'c
+
+ So...how we would call f: 
+ (a*b) -> 'c
+*)
 
 [<EntryPoint>]
 let main argv =
