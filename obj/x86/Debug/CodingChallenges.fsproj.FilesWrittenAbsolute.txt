@@ -1,8 +1,3 @@
-/home/jacque/Projects/F-sharp/CodingChallenges/CodingChallenges/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.fs
-/home/jacque/Projects/F-sharp/CodingChallenges/CodingChallenges/bin/Debug/CodingChallenges.exe.mdb
-/home/jacque/Projects/F-sharp/CodingChallenges/CodingChallenges/bin/Debug/CodingChallenges.exe
-/home/jacque/Projects/F-sharp/CodingChallenges/CodingChallenges/obj/x86/Debug/CodingChallenges.exe
-/home/jacque/Projects/F-sharp/CodingChallenges/CodingChallenges/obj/x86/Debug/CodingChallenges.exe.mdb
 /Users/admin/Projects/F-Sharp/CodeChallenges/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.fs
 /Users/admin/Projects/F-Sharp/CodeChallenges/bin/Debug/CodingChallenges.exe.mdb
 /Users/admin/Projects/F-Sharp/CodeChallenges/bin/Debug/CodingChallenges.exe

@@ -1,6 +1,34 @@
 ﻿open System
 open System.IO
 
+//Pattern-matching
+let urlFilter url agent =
+    match url, agent with
+    | "http://fsharpforfunandprofit.com", _ -> true
+    | "http://homepages.inf.ed.ac.uk/wadler/topics/monads.html", _ -> true
+    | _ -> invalidOp "Not a valid website address"
+
+
+let primes = [2;3;5;7;11]
+let primesList = 
+    seq { for i in 2..11 do
+            for j in 2..11 do
+                yield (i, j, i*j) }
+     
+
+let squaredPrimes =  
+    primes
+    |> Seq.map(fun n -> n * n)
+    |> Seq.iter(printfn "%A")
+
+
+
+let printFirst primes =
+    match primes with
+    | h :: t -> printfn "The first is: %d" h
+    | [] -> printfn "No primes found in list"
+
+
 let printNumbers() =
     printfn "Welcome to the coding challenge where your program should successfully"
     printfn "accept the input of two integers and output their sum and product"
@@ -25,7 +53,7 @@ nums
 //Pattern-matching as part of a function that the original function was pipelined into
 let nums2 = [1..100]
 nums2
-|> Seq.map (fun x->
+|> Seq.map (fun x ->
     match x%3, x%5 with
     | 0,0 -> "FizzBuzz"
     | 0,_ -> "Fizz"
@@ -36,7 +64,7 @@ nums2
 //Pattern-matching on the parameters of a function
 let fizzbuzz modFizz modBuzz = 
     [1..100]
-    |> Seq.map (fun x->
+    |> Seq.map (fun x ->
         match x%modFizz, x%modBuzz with
         | 0,0 -> "FizzBuzz"
         | 0,_ -> "Fizz"
@@ -48,7 +76,7 @@ fizzbuzz 3 5
 //Passing functions as parameters in another function
 let fizzBuzz modFizz modBuzz = 
     [1..100]
-    |> Seq.map (fun x->
+    |> Seq.map (fun x ->
         match modFizz(x:int), modBuzz(x:int) with
         | 0,0 -> "FizzBuzz"
         | 0,_ -> "Fizz"
@@ -81,13 +109,26 @@ let factorial n =
         | _ -> loop(i - 1) (acc * i)
     loop n 1 //tail recursion
 
+let rec fib x =
+    if x < 2 then 1
+    else fib (x - 1) + fib(x - 2)
+let results = Array.Parallel.map fib [|1..10|]
+
 // Demonstrating function composition
 let compose (f: 'b -> 'c) (g: 'a -> 'b) =
     fun a -> a |> g |> f
 
+
+
+
 [<EntryPoint>]
 let main argv =
+    printFirst primes
+
+    squaredPrimes
     (printNumbers())
+    printfn "The 5th Fibonnaci number is: %d" (fib 5)
+    printfn "%A" results
     printfn "%f" (zeta 15.0 0.0)
     printfn "%d" (factorial 5)
     0 // return an integer exit code
